@@ -44,33 +44,6 @@ scripts/
 
 Both CSV and Excel versions of the datasets are provided.
 
-## Computational workflow
-
-The main workflow is:
-
-```text
-01_discover_legislation.py
-        ↓
-discovered_legislation.csv / .xlsx
-        ↓
-02_download_legislation.py
-        ↓
-html/
-        ├──────────────→ 04_screen_legislation.py
-        │                         ↓
-        │                 screening_documents.*
-        │                 screening_matches.*
-        │
-        ↓
-03_transform_html_files.py
-        ↓
-clean_html/
-        ↓
-subsequent in-depth content analysis
-```
-
-The scripts use relative paths. They should therefore be executed from the repository root.
-
 ## Screening procedure
 
 The screening script contains the predefined Spanish search terms and their categories, subcategories, and tiers. Text matching is performed using case-insensitive exact substring matching.
