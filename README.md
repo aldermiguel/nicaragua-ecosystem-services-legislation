@@ -4,7 +4,7 @@
 
 This repository contains the computational workflow, source documents, and screening datasets used to identify and screen Nicaraguan legislation related to ecosystem services and associated concepts.
 
-The workflow focuses on legislation listed under the **Medio Ambiente y Recursos Naturales** subject category of the Asamblea Nacional de Nicaragua legislation database. The corpus covers legislation identified through the database for the study period defined in the accompanying research article.
+The workflow focuses on legislation listed under the *Medio Ambiente y Recursos Naturales* subject category of the Asamblea Nacional de Nicaragua legislation database. The corpus covers legislation identified through the database for the study period defined in the accompanying research article.
 
 The workflow was implemented in Python and consists of four main scripts:
 
