@@ -100,4 +100,4 @@ The metadata and screening datasets in `data/legislation/` are made freely avail
 
 ## Citation
 
-Citation information for the repository will be provided following peer review of the associated research article.
+If you think this workflow and/or dataset contributed to your work, consider citing it in your list of references. You can navigate to the publication and export the citation in different styles and formats by clicking the icon below.
