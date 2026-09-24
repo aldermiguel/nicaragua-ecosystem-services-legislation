@@ -80,7 +80,8 @@ The HTML files in `data/legislation/html/` are copies of legislative documents r
 
 The metadata and screening datasets `discovered_legislation.*`, `screening_documents.*`, and `screening_matches.*` are made freely available for research and other reuse, subject to any rights or restrictions applicable to the underlying source documents.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22938441.svg)](https://doi.org/10.5281/zenodo.22938441)
 ## Citation
 
 If you think this workflow and/or dataset contributed to your work, consider citing it in your list of references. You can navigate to the publication and export the citation in different styles and formats by clicking the icon below.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22938441.svg)](https://doi.org/10.5281/zenodo.22938441)
