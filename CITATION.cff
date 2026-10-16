@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this workflow or dataset, please cite it as below."
+title: "Nicaraguan Environmental Legislation: Ecosystem Services Screening"
+abstract: "Computational workflow, source documents and screening datasets used to identify and screen Nicaraguan legislation related to ecosystem services, based on the 'Medio Ambiente y Recursos Naturales' grouping of the Asamblea Nacional de Nicaragua legislative repository."
+type: dataset
+authors:
+  - family-names: Contreras
+    given-names: Alder M.
+    affiliation: "Institute of Development Policy, University of Antwerp"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+doi: 10.5281/zenodo.22938441
+repository-code: "https://github.com/aldermiguel/nicaragua-ecosystem-services-legislation"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - ecosystem services
+  - payments for ecosystem services
+  - environmental legislation
+  - Nicaragua
+  - web scraping
+  - text screening
