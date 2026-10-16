@@ -1,0 +1,22 @@
+term,category,subcategory,tier
+servicios ecosistémicos,direct_es,ecosystem_services,1
+servicios de los ecosistemas,direct_es,ecosystem_services,1
+servicios del ecosistema,direct_es,ecosystem_services,1
+servicios ambientales,direct_es,ecosystem_services,1
+servicios del ambiente,direct_es,ecosystem_services,1
+bienes y servicios ambientales,direct_es,ecosystem_services,1
+bienes y servicios ecosistémicos,direct_es,ecosystem_services,1
+funciones ecosistémicas,direct_es,ecosystem_functions,1
+funciones ecológicas,direct_es,ecosystem_functions,1
+funciones ambientales,direct_es,ecosystem_functions,1
+pago por servicios ambientales,economic_instruments,payments,2
+pagos por servicios ambientales,economic_instruments,payments,2
+pago por servicios ecosistémicos,economic_instruments,payments,2
+pagos por servicios ecosistémicos,economic_instruments,payments,2
+compensación por servicios ambientales,economic_instruments,compensation,2
+compensación por servicios ecosistémicos,economic_instruments,compensation,2
+incentivos ambientales,economic_instruments,incentives,2
+incentivos para la conservación,economic_instruments,incentives,2
+incentivos económicos para la conservación,economic_instruments,incentives,2
+mercado de servicios ambientales,economic_instruments,markets,2
+mercado de servicios ecosistémicos,economic_instruments,markets,2

@@ -1,9 +1,9 @@
 import re
 import csv
-from pathlib import Path
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+from config import BASE_URL, LEGISLATION_FOLDER, DISCOVERED_FILE, DISCOVERED_EXCEL_FILE
 
 # Script jobs
 # 1- Open the 'Asamblea Nacional de Nicaragua' website
@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 session = requests.Session()
 
-url = "http://legislacion.asamblea.gob.ni/Normaweb.nsf/xpMainDIL.xsp"
+url = BASE_URL + "/Normaweb.nsf/xpMainDIL.xsp"
 
 headers = {
     "User-Agent": "Mozilla/5.0"
@@ -223,11 +223,10 @@ all_records = list(unique_records.values())
 
 # Save metadata
 
-output_folder = Path("data/legislation")
-output_folder.mkdir(parents=True, exist_ok=True)
+LEGISLATION_FOLDER.mkdir(parents=True, exist_ok=True)
 
-output_file = output_folder / "discovered_legislation.csv"
-excel_file = output_folder / "discovered_legislation.xlsx"
+output_file = DISCOVERED_FILE
+excel_file = DISCOVERED_EXCEL_FILE
 
 with open(output_file, "w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=["document_id", "title", "href"])
