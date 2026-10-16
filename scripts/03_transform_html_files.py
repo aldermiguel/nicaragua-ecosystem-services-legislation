@@ -1,12 +1,12 @@
-from pathlib import Path
 from bs4 import BeautifulSoup
+from config import HTML_FOLDER, CLEAN_HTML_FOLDER
 
-html_folder = Path("data/legislation/html")
-clean_folder = Path("data/legislation/clean_html")
+html_folder = HTML_FOLDER
+clean_folder = CLEAN_HTML_FOLDER
 
 clean_folder.mkdir(parents=True, exist_ok=True)
 
-for input_file in html_folder.glob("*.html"):
+for input_file in sorted(html_folder.glob("*.html")):
 
     soup = BeautifulSoup(input_file.read_text(encoding="utf-8"), "html.parser")
 

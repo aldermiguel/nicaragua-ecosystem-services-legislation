@@ -1,7 +1,6 @@
 import csv
-from pathlib import Path
 import requests
-from bs4 import BeautifulSoup
+from config import BASE_URL, DISCOVERED_FILE, HTML_FOLDER
 
 # Script jobs
 # 1- Set directories and output files
@@ -10,9 +9,9 @@ from bs4 import BeautifulSoup
 
 # File locations
 
-metadata_file = Path("data/legislation/discovered_legislation.csv")
+metadata_file = DISCOVERED_FILE
 
-html_folder = Path("data/legislation/html")
+html_folder = HTML_FOLDER
 
 html_folder.mkdir(parents=True, exist_ok=True)
 
@@ -37,7 +36,7 @@ for number, record in enumerate(records, start=1):
     href = record["href"]
 
     # Construct the URLs
-    url = "http://legislacion.asamblea.gob.ni"+ href
+    url = BASE_URL + href
 
     output_file = (html_folder / f"{document_id}.html")
 
