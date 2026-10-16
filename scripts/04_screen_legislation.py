@@ -1,8 +1,16 @@
-from pathlib import Path
+import csv
 import re
 import unicodedata
 import pandas as pd
 from bs4 import BeautifulSoup
+from config import (
+    BASE_URL,
+    ROOT,
+    DISCOVERED_FILE,
+    SEARCH_TERMS_FILE,
+    HTML_FOLDER,
+    SCREENING_FOLDER
+)
 
 # Script jobs
 # 1- Set directories and output files
@@ -14,8 +22,8 @@ from bs4 import BeautifulSoup
 
 # File locations
 
-html_folder = Path("data/legislation/html")
-screening_folder = Path("data/legislation/screening")
+html_folder = HTML_FOLDER
+screening_folder = SCREENING_FOLDER
 
 screening_folder.mkdir(parents=True, exist_ok=True)
 
@@ -43,85 +51,13 @@ allowed_norm_types = {
     "Reglamento"
 }
 
-# Search dictionary
+# Search dictionary (data/legislation/search_terms.csv)
 
-def terms(words, category, subcategory, tier):
-    return [
-        {
-            "term": word,
-            "category": category,
-            "subcategory": subcategory,
-            "tier": tier
-        }
-        for word in words
+with open(SEARCH_TERMS_FILE, "r", encoding="utf-8") as file:
+    search_terms = [
+        {**row, "tier": int(row["tier"])}
+        for row in csv.DictReader(file)
     ]
-
-
-search_terms = (
-    terms(
-        [
-            "servicios ecosistémicos",
-            "servicios de los ecosistemas",
-            "servicios del ecosistema",
-            "servicios ambientales",
-            "servicios del ambiente",
-            "bienes y servicios ambientales",
-            "bienes y servicios ecosistémicos"
-        ],
-        "direct_es",
-        "ecosystem_services",
-        1
-    )
-    + terms(
-        [
-            "funciones ecosistémicas",
-            "funciones ecológicas",
-            "funciones ambientales"
-        ],
-        "direct_es",
-        "ecosystem_functions",
-        1
-    )
-    + terms(
-        [
-            "pago por servicios ambientales",
-            "pagos por servicios ambientales",
-            "pago por servicios ecosistémicos",
-            "pagos por servicios ecosistémicos"
-        ],
-        "economic_instruments",
-        "payments",
-        2
-    )
-    + terms(
-        [
-            "compensación por servicios ambientales",
-            "compensación por servicios ecosistémicos"
-        ],
-        "economic_instruments",
-        "compensation",
-        2
-    )
-    + terms(
-        [
-            "incentivos ambientales",
-            "incentivos para la conservación",
-            "incentivos económicos para la conservación"
-        ],
-        "economic_instruments",
-        "incentives",
-        2
-    )
-    + terms(
-        [
-            "mercado de servicios ambientales",
-            "mercado de servicios ecosistémicos"
-        ],
-        "economic_instruments",
-        "markets",
-        2
-    )
-)
 
 # Functions
 
@@ -155,10 +91,10 @@ def extract_url(soup, document_id):
                 return href
 
             if href.startswith("/"):
-                return ("http://legislacion.asamblea.nacional.gob.ni" + href)
+                return (BASE_URL + href)
 
     return (
-        "http://legislacion.asamblea.nacional.gob.ni/"
+        f"{BASE_URL}/"
         "Normaweb.nsf/xpNormaJuridica.xsp"
         f"?documentId={document_id}&action=openDocument"
     )
@@ -252,11 +188,18 @@ def find_matches(text):
 
 # Main screening
 
-html_files = sorted(html_folder.rglob("*.html"))
+# Screen only the documents listed in discovered_legislation.csv
 
-if not html_files:
+with open(DISCOVERED_FILE, "r", encoding="utf-8") as file:
+    document_ids = sorted(row["document_id"] for row in csv.DictReader(file))
+
+html_files = [html_folder / f"{document_id}.html" for document_id in document_ids]
+
+missing_files = [file_path for file_path in html_files if not file_path.exists()]
+
+if missing_files:
     raise FileNotFoundError(
-        f"No HTML files found in {html_folder.resolve()}"
+        f"{len(missing_files)} discovered documents have no HTML file in {html_folder}"
     )
 
 document_results = []
@@ -292,7 +235,7 @@ for number, file_path in enumerate(html_files, start=1):
     base = {
         "document_id": document_id,
         "url": url,
-        "file": str(file_path),
+        "file": file_path.relative_to(ROOT).as_posix(),
         **metadata,
         "tipo_norma": tipo_norma
     }
@@ -354,7 +297,7 @@ for number, file_path in enumerate(html_files, start=1):
         f"Candidate: {candidate}"
     )
 
-# Save results cronologically
+# Save results chronologically
 
 documents_df = pd.DataFrame(document_results)
 matches_df = pd.DataFrame(match_results)
@@ -371,12 +314,16 @@ matches_df["_sort_date"] = pd.to_datetime(
     errors="coerce"
 )
 
+# Documents published on the same date are ordered by document_id
+
 documents_df = documents_df.sort_values(
-    "_sort_date"
+    ["_sort_date", "document_id"],
+    kind="stable"
 )
 
 matches_df = matches_df.sort_values(
-    ["_sort_date", "document_id", "match_number"]
+    ["_sort_date", "document_id", "match_number"],
+    kind="stable"
 )
 
 documents_df = documents_df.drop(columns="_sort_date")
