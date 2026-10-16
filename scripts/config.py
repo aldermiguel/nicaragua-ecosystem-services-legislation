@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# Shared settings for scripts 01-04
+# Shared settings for scripts 01-05
 
 # Repository root, so the scripts can be run from any folder
 
@@ -22,3 +22,4 @@ MANIFEST_FILE = LEGISLATION_FOLDER / "manifest.csv"
 HTML_FOLDER = LEGISLATION_FOLDER / "html"
 CLEAN_HTML_FOLDER = LEGISLATION_FOLDER / "clean_html"
 SCREENING_FOLDER = LEGISLATION_FOLDER / "screening"
+CODING_FOLDER = LEGISLATION_FOLDER / "coding"

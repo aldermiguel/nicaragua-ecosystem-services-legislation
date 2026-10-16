@@ -1,0 +1,31 @@
+dimension,code,pattern,note
+logic,command_control,áreas? protegidas?,protected areas
+logic,command_control,reservas? (natural|biológica|de biosfera)|parques? nacional|refugios? de vida silvestre,protected area categories
+logic,command_control,prohíb|prohib|se prohíbe|queda prohibid,prohibitions
+logic,command_control,sanci[oó]n|sancion|multa|infracci[oó]n|decomiso|clausura,sanctions
+logic,command_control,permisos?|licencias?|autorizaci[oó]n|concesi[oó]n,permits and licences
+logic,command_control,vedas?|zonificaci[oó]n|zonas? de amortiguamiento|plan(es)? de manejo,zoning and management plans
+logic,market_valuation,valoraci[oó]n|valorar|valor econ[oó]mico,valuation
+logic,market_valuation,pagos? por servicios|pago por los servicios|compensaci[oó]n por servicios|\bPSA\b|\bPSE\b,payments for ES
+logic,market_valuation,mercados?\b,markets
+logic,market_valuation,incentivos?|est[ií]mulos? (econ[oó]mic|fiscal)|exoneraci[oó]n|exenci[oó]n,incentives
+logic,market_valuation,cobros?\b|tarifas?|cánones?|canon\b|costos? ambientales|internaliz,fees and cost internalisation
+logic,market_valuation,fondos?\b|financiamiento|mecanismos? financier|instrumentos? econ[oó]mic,funds and economic instruments
+logic,participatory_plural,participaci[oó]n|participativ|consulta|consentimiento,participation and consultation
+logic,participatory_plural,co-?manejo|gesti[oó]n compartida|manejo colaborativo,co-management
+logic,participatory_plural,pueblos? (ind[ií]genas?|originarios?)|comunidades? (ind[ií]genas?|étnicas?|locales?)|afrodescendientes?|étnic,Indigenous and local communities
+logic,participatory_plural,conocimientos? (tradicional|ancestral|local)|saberes|cosmovisi[oó]n|pr[aá]cticas? tradicional,knowledge plurality
+actor,central,\bMARENA\b|Ministerio|Poder Ejecutivo|Presidente de la República|Presidencia|\bel Estado\b|Gobierno (Central|de Reconciliaci)|\bANA\b|Autoridad Nacional del Agua|\bINAFOR\b|\bMAGFOR\b|\bMAG\b|\bINETER\b|\bSINAP\b|Procuradur[ií]a|Comisi[oó]n Nacional|Consejo Nacional|\bINTA\b|\bENACAL\b|Fiscal[ií]a|autoridad (competente|ambiental)|Instituto Nacional|Comisi[oó]n para la Administraci[oó]n|Comit[eé] T[eé]cnico|instituciones gubernamentales|Poder Ejecutivo,central state bodies
+actor,subnational,municipal|alcald[ií]a|gobiernos? regional|consejos? regional|regiones? autónoma|gobiernos? territorial|gobiernos? comunal,municipal regional and territorial governments
+actor,community_private,comunidades?|pueblos?|propietarios?|productores?|poseedores?|comités? de cuenca|organismos? de cuenca|sociedad civil|organizaciones? no gubernamental|\bONG|usuarios?|sector privado|empresas?|particulares,communities owners users and private actors
+deontic,obligation,\bdeber[áa]n?\b|\bdebe(n|r)?\b|obligad|se obliga|obligaci[oó]n de|tendrá(n)? que|es responsabilidad|será(n)? responsable,explicit obligation
+deontic,prohibition,prohíb|prohib|no podrá|no se podrá|no se permit,explicit prohibition
+deontic,permission,\bpodrá(n)?\b|se permit|se autoriza,explicit permission
+aim,operational,establec|crea(r|rá|se)?\b|\bse crea|pagar|pagarán|cobra|fija|asigna|determina|reglament|regula|aprueb|aprobar|otorga|registr|administra|constitu|sanciona|autoriza|norma(rá|r)\b|elabora|emiti|ejecuta,operational aim verbs
+aim,promotional,promov|promuev|fomenta|impuls|incentiv|propici|procur|estimul|prioriz|reconoc|orienta|contribu|favorec|facilit|apoya|valorar|fortalec|propon|gestionar|buscar|velar,promotional or aspirational aim verbs
+or_else,sanction,sanci[oó]n|sancion|multa|infracci[oó]n|penaliz|responsabilidad (civil|penal|administrativa),consequence for non-compliance
+instrument,payer,pagar[áa]n?|deberá(n)? pagar|usuarios? (pagar|de los servicios)|beneficiarios? de los servicios|quienes? se benefici|contribuyentes?|tributar|aportar[áa]n?,who pays
+instrument,amount_method,tarifas?|montos?|metodolog[ií]a|criterios? de valoraci|c[aá]lculo|precio|escala|porcentaje|valor de referencia,how much and how calculated
+instrument,fund,fondos?\b|cuenta especial|fideicomiso|presupuesto,where money goes
+instrument,procedure,procedimiento|requisitos?|registro|contrato|convenio|acuerdo|certificad|verificaci[oó]n|monitoreo,administrative procedure
+deferral,deferral,reglamentar[áa]n?\b|será(n)? regulad[oa]s? por|ley especial|propuesta de reglamento|se (deberán |deberá )?establecer(á|án)? (los |las )?(criterios|parámetros|mecanismos)|deberán establecer(se)? criterios|establecer criterios y parámetros,operationalisation referred to a future instrument
