@@ -78,7 +78,7 @@ Every column of these datasets is described in [`data/legislation/CODEBOOK.md`](
 
 The CSV files are the reference version of each dataset. The Excel files are copies provided for convenience.
 
-The HTML documents were retrieved in 2026 and added to this repository on 17 September 2026. The repository website may have changed since then.
+The HTML documents were first retrieved in 2026 and added to this repository on 17 September 2026. The snapshot was refreshed against the website on 17 October 2026: the list of records was downloaded again, four records that had left the *Medio Ambiente y Recursos Naturales* grouping were removed, four new ones were added, and the 42 documents whose visible text had changed online were replaced. The other 700 documents are kept as first retrieved, because a fresh download differs from them only in hidden session codes. The website may have changed since then.
 
 ## Requirements
 
@@ -115,7 +115,7 @@ The discovery and download stages depend on the availability and structure of th
 | Stage | Result |
 |---|---|
 | Records discovered (`discovered_legislation.csv`) | 746 |
-| Documents screened (laws, decrees and regulations) | 492 |
+| Documents screened (laws, decrees and regulations) | 491 |
 | Candidate documents (at least one search term found) | 47 |
 | Individual matches (`screening_matches.csv`) | 322 |
 | Statements coded in the 18 selected documents (`coded_statements.csv`) | 6,076 |
