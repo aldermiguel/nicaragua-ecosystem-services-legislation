@@ -6,16 +6,14 @@ This repository contains the computational workflow, source documents, and scree
 
 It accompanies the article *From fences to payments: A systematic review of Nicaragua's legal framework on ecosystem services* (Alder M. Contreras).
 
-The workflow was implemented in Python and consists of six main scripts:
+The workflow was implemented in Python and consists of five main scripts:
 
 1. `01_discover_legislation.py` — discovers legislation records and saves their metadata.
 2. `02_download_legislation.py` — downloads the corresponding HTML documents.
 3. `03_transform_html_files.py` — transforms the downloaded HTML documents into cleaner HTML files for subsequent in-depth content analysis.
 4. `04_screen_legislation.py` — screens the original downloaded HTML documents using the dictionary of Spanish search terms in `search_terms.csv` and produces document-level and match-level screening datasets.
 5. `05_code_provisions.py` — splits the 18 documents selected for analysis into statements, codes each statement for conservation logic, and codes the statements that mention ecosystem services for actor, deontic, aim, deferral and payment details (Institutional Grammar), applying the decisions recorded in `manual_review.csv`.
-6. `06_plot_coding.py` — draws a quick-look figure of the coding results.
-
-Figure 2 of the article is drawn by the R script `07_plot_figure2.R`, which reads the same coding outputs and sets every label in the article's font (Latin Modern Roman) by compiling the figure with pdfLaTeX.
+Figure 2 of the article is drawn by the R script `06_plot_figure2.R`, which reads the coding outputs of `05_code_provisions.py` and sets every label in the article's font (Latin Modern Roman) by compiling the figure with pdfLaTeX.
 
 Two helper scripts complete the workflow: `run_all.py` runs the stages in order, and `build_manifest.py` records a checksum of every downloaded document. Settings shared by all scripts (website address and file locations) are kept in `config.py`.
 
@@ -51,8 +49,6 @@ data/
         ├── es_statements.xlsx
         ├── logic_by_document.csv
         ├── es_operationality_summary.csv
-        ├── figure_coding.pdf
-        ├── figure_coding.png
         ├── figure2.pdf
         └── figure2.tex
 
@@ -63,8 +59,7 @@ scripts/
 ├── 03_transform_html_files.py
 ├── 04_screen_legislation.py
 ├── 05_code_provisions.py
-├── 06_plot_coding.py
-├── 07_plot_figure2.R
+├── 06_plot_figure2.R
 ├── build_manifest.py
 └── run_all.py
 ```
@@ -91,7 +86,7 @@ The workflow requires Python 3.13.15 and the external packages listed in `requir
 
 The scripts also use modules from the Python standard library.
 
-Figure 2 (`07_plot_figure2.R`) needs R (tested with 4.6.1, base packages only) and a LaTeX distribution with `pdflatex` on the path and the `pgfplots`, `standalone` and `lmodern` packages.
+Figure 2 (`06_plot_figure2.R`) needs R (tested with 4.6.1, base packages only) and a LaTeX distribution with `pdflatex` on the path and the `pgfplots`, `standalone` and `lmodern` packages.
 
 ## Reproduction
 
@@ -118,7 +113,7 @@ The scripts can also be run one by one, in numerical order, for example `python 
 To draw Figure 2 from the coding outputs, run from the repository root:
 
 ```bash
-Rscript scripts/07_plot_figure2.R
+Rscript scripts/06_plot_figure2.R
 ```
 
 It writes `figure2.pdf` and the pgfplots source `figure2.tex` to `data/legislation/coding/`.
