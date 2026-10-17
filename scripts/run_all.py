@@ -4,7 +4,7 @@ import sys
 from config import ROOT
 
 # Script jobs
-# 1- Run scripts 01-04 in order
+# 1- Run scripts 01-06 in order
 # 2- With --offline, skip the web stages (01-02) and reuse the committed HTML documents
 
 parser = argparse.ArgumentParser(description="Run the legislation screening workflow.")
@@ -23,7 +23,9 @@ web_stages = [
 
 local_stages = [
     "03_transform_html_files.py",
-    "04_screen_legislation.py"
+    "04_screen_legislation.py",
+    "05_code_provisions.py",
+    "06_plot_coding.py"
 ]
 
 stages = local_stages if args.offline else web_stages + local_stages

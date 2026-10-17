@@ -79,3 +79,63 @@ One row per individual match of a search term (322 rows). The first ten columns 
 | `tier` | integer | Tier of the term. | `1` |
 | `matched_text` | text | The text as it appears in the document, with its original capitalisation. | `SERVICIOS AMBIENTALES` |
 | `context` | text | The sentence(s) around the match, cut at the nearest sentence boundary within 1,000 characters on each side. | `SERVICIOS AMBIENTALES: Elementos ambientales y sus Asociaciones ...` |
+
+## `coding/` — statement-level coding of the selected documents
+
+Produced by `05_code_provisions.py` from the original (first published) text of the 18 documents analysed in the article. The coding combines a dictionary-assisted first pass with a manual review of every statement that mentions an ES search term.
+
+### Inputs
+
+- `selected_legislation.csv`: the 18 documents (one row each) with `document_id`, `no_norma`, `tipo_norma`, `year`, `domain` and `role` (`main`, `regulation` or `reform`) as in Table 3 of the article, and `label_en` (English label used in the article).
+- `coding_dictionary.csv`: one row per regular expression (`dimension`, `code`, `pattern`, `note`). Matching is case-insensitive. Dimensions: `logic` (conservation logic), `actor`, `deontic`, `aim`, `or_else`, `instrument` and `deferral`.
+- `manual_review.csv`: reviewer decisions that replace dictionary codes for specific ES statements. A row is matched by `label_en` and the first characters of the statement (`text_start`); non-empty `operationality`, `decision_authority` and `es_function` values replace the dictionary codes; `notes` gives the reason.
+
+### Unit of analysis
+
+A **statement** is one paragraph or numbered item of the document body, starting at Article 1 (preambles and *considerandos* are excluded). Lines that only hold a heading or a number, and short labels ending in a colon (such as defined terms), are joined to the following line. Statements shorter than four words are dropped.
+
+### `coded_statements.csv`
+
+One row per statement (6,076 rows).
+
+| Column | Type | Description |
+|---|---|---|
+| `document_id`, `label_en`, `no_norma`, `tipo_norma`, `year`, `domain`, `role` | text/integer | From `selected_legislation.csv`. |
+| `statement_number` | integer | Position of the statement in the document. |
+| `words` | integer | Number of words. |
+| `text` | text | Statement text (Spanish). |
+| `command_control` | boolean | Statement carries command-and-control language (protected areas, prohibitions, permits, sanctions, zoning). |
+| `market_valuation` | boolean | Statement carries market-valuation language (valuation, payments, markets, incentives, fees, funds). |
+| `participatory_plural` | boolean | Statement carries participatory or plural-knowledge language (participation, consultation, co-management, Indigenous and local communities, traditional knowledge). |
+| `es_statement` | boolean | Statement contains at least one term from `search_terms.csv`. |
+| `es_terms` | text | ES terms found, separated by `; `. |
+| `period` | text | `1996-2000`, `2001-2007`, `2008-2013` or `2014-2022`, from `year`. |
+
+### `es_statements.csv`
+
+One row per statement with `es_statement` true (71 rows). Columns of `coded_statements.csv`, plus:
+
+| Column | Type | Description |
+|---|---|---|
+| `actor_central`, `actor_subnational`, `actor_community_private` | boolean | Statement names a central-state body; a municipal, regional or territorial government; or communities, owners, users or private actors. |
+| `deontic_obligation`, `deontic_prohibition`, `deontic_permission` | boolean | Explicit deontic operator (*deberá*, *se prohíbe*, *podrá* and variants). |
+| `aim_operational`, `aim_promotional` | boolean | Aim verb is operational (*establecer*, *crear*, *pagar*, *cobrar*, *reglamentar*...) or promotional (*promover*, *fomentar*, *impulsar*, *incentivar*...). |
+| `or_else` | boolean | Statement names a sanction or consequence for non-compliance. |
+| `deferral` | boolean | Statement refers its own operationalisation to a future instrument (*reglamentará*, *será regulado por una Ley Especial*, *se establecerán los criterios*...). |
+| `instrument_payer`, `instrument_amount_method`, `instrument_fund`, `instrument_procedure` | boolean | Statement specifies who pays, how much or how it is calculated, where the money goes, or an administrative procedure. |
+| `statement_type` | text | Institutional Grammar type: `definition`, `strategy` (no deontic), `norm` (deontic, or named actor with operational aim) or `rule` (norm with a sanction). |
+| `operationality` | text | `declarative` (definitions, objectives, promotional strategies), `deferring` (operationalisation referred to a future instrument) or `operational` (a named actor is given an action that applies directly). Reviewed value. |
+| `instrument_elements` | integer | Number of the four `instrument_*` items present (0-4). |
+| `decision_authority` | text | `central_only`, `central_shared` (central and other actors), `non_central_only` or `unspecified`. Actors named only as beneficiaries or interest holders are not decision-makers. Reviewed value. |
+| `es_function` | text | Main function of the ES reference: `market_valuation`, `participatory_plural`, `command_control` or `general_es`. Reviewed value. |
+| `auto_operationality`, `auto_decision_authority` | text | Dictionary codes before manual review. |
+| `review_status` | text | `reviewed_no_change`, or the status recorded in `manual_review.csv` for changed codes. |
+| `review_notes` | text | Reason for a changed code. |
+
+### `logic_by_document.csv`
+
+One row per selected document: number of statements and ES statements, share of statements carrying each logic (`*_share`), and `logics_present` (0-3).
+
+### `es_operationality_summary.csv`
+
+ES statements by `period`, `es_function` and `operationality`, with the number that assign decision authority to the central state only (`central_only`), that name no actor (`unspecified_actor`), and that specify who pays or how much (`with_payer_or_amount`).

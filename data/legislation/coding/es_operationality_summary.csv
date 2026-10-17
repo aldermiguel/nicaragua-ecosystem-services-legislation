@@ -1,0 +1,17 @@
+﻿period,es_function,operationality,es_statements,central_only,unspecified_actor,with_payer_or_amount
+1996-2000,general_es,declarative,2,0,2,0
+1996-2000,market_valuation,declarative,2,0,2,0
+2001-2007,command_control,declarative,1,0,1,0
+2001-2007,general_es,declarative,10,0,10,0
+2001-2007,market_valuation,declarative,11,2,9,0
+2001-2007,market_valuation,deferring,3,2,1,0
+2001-2007,market_valuation,operational,2,2,0,1
+2001-2007,participatory_plural,declarative,2,0,1,0
+2008-2013,command_control,declarative,1,0,1,0
+2008-2013,general_es,declarative,4,0,3,0
+2008-2013,market_valuation,declarative,11,2,9,0
+2008-2013,market_valuation,deferring,7,7,0,0
+2014-2022,general_es,declarative,8,0,8,0
+2014-2022,market_valuation,declarative,3,0,3,0
+2014-2022,market_valuation,deferring,1,0,1,0
+2014-2022,market_valuation,operational,3,3,0,1
