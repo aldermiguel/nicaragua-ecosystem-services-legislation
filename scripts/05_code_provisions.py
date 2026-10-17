@@ -239,13 +239,10 @@ es["es_function"] = es.apply(
 
 es["auto_operationality"] = es["operationality"]
 es["auto_decision_authority"] = es["decision_authority"]
-es["review_status"] = "not_reviewed"
 es["review_notes"] = ""
 
 if review_file.exists():
     review = pd.read_csv(review_file, dtype=str).fillna("")
-    es["review_status"] = "reviewed_no_change"
-
     for _, item in review.iterrows():
         mask = (
             (es["label_en"] == item["label_en"])
@@ -260,7 +257,6 @@ if review_file.exists():
             if item.get(column, ""):
                 es.loc[mask, column] = item[column]
 
-        es.loc[mask, "review_status"] = item["review_status"]
         es.loc[mask, "review_notes"] = item["notes"]
 
 # Summary: logic shares by document
