@@ -38,7 +38,7 @@ One row per HTML document in `html/` (746 rows). Produced by `build_manifest.py`
 
 ## `screening/screening_documents.csv`
 
-One row per screened document (492 rows): every record whose `rango` is a law, decree or regulation. Records of other types are not included. Rows are ordered by publication date, then `document_id`. Produced by `04_screen_legislation.py`. The examples come from the *Reglamento de Áreas Protegidas de Nicaragua*.
+One row per screened document (491 rows): every record whose `rango` is a law, decree or regulation. Records of other types are not included. Rows are ordered by publication date, then `document_id`. Produced by `04_screen_legislation.py`. The examples come from the *Reglamento de Áreas Protegidas de Nicaragua*.
 
 | Column | Type | Description | Example |
 |---|---|---|---|
