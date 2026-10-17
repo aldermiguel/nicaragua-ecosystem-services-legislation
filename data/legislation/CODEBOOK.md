@@ -129,7 +129,6 @@ One row per statement with `es_statement` true (71 rows). Columns of `coded_stat
 | `decision_authority` | text | `central_only`, `central_shared` (central and other actors), `non_central_only` or `unspecified`. Actors named only as beneficiaries or interest holders are not decision-makers. Reviewed value. |
 | `es_function` | text | Main function of the ES reference: `market_valuation`, `participatory_plural`, `command_control` or `general_es`. Reviewed value. |
 | `auto_operationality`, `auto_decision_authority` | text | Dictionary codes before manual review. |
-| `review_status` | text | `reviewed_no_change`, or the status recorded in `manual_review.csv` for changed codes. |
 | `review_notes` | text | Reason for a changed code. |
 
 ### `logic_by_document.csv`
